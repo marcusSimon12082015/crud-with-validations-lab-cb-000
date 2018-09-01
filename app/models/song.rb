@@ -2,6 +2,7 @@ class Song < ActiveRecord::Base
   validates :title, presence: true
   validates :released, inclusion: { in: [true,false] }
   validate :release_year_is_optional
+  validates :title, uniqueness: { scope: :release_year, message: "should happen only once a year" }
   validates :artist_name, presence: true
 
   def release_year_is_optional
