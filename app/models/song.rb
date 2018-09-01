@@ -11,7 +11,7 @@ class Song < ActiveRecord::Base
     puts attributes.inspect
     if (released && release_year.nil?)
       errors.add(:release_year, "Release year has to be present!")
-    elsif release_year > current_year
+    elsif !release_year.nil? && release_year > current_year
         errors.add(:release_year, "The release year cant be greater than the current year.")
     end
   end  
