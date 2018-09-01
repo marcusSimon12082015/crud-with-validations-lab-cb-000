@@ -9,7 +9,7 @@ class Song < ActiveRecord::Base
     current_year = Date.current.year
     puts current_year
     puts attributes.inspect
-    if (released && ( release_year.nil? || release_year.empty? ))
+    if (released && release_year.nil?)
       errors.add(:release_year, "Release year has to be present!")
     end  
   end  
