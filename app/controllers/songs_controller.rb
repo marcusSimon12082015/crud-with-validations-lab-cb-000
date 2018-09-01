@@ -21,6 +21,8 @@ class SongsController < ApplicationController
 
   end
   def create 
-
+    @song = Song.new(params.require(:song).permit(:title,:released,:release_year,:artist_name))
+    @song.save
+    redirect_to song_path(@song)
   end   
 end 
