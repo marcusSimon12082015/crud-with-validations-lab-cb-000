@@ -21,14 +21,18 @@ class SongsController < ApplicationController
   end
    
   def update 
-    @song = Song.new(params.require(:song).permit(:title,:released,:release_year,:artist_name))
-    @song.save
-    redirect_to song_path(@song)
+    @song = Song.create(params.require(:song).permit(:title,:released,:release_year,:artist_name))
+    if @song.valid?
+      redirect_to song_path(@song)
+    else 
+      render "edit"
+    end   
   end
   
   def create 
-    @song = Song.create(params.require(:song).permit(:title,:released,:release_year,:artist_name))
+    @song = Song.new(params.require(:song).permit(:title,:released,:release_year,:artist_name))
     if @song.valid?
+      @song.save
       redirect_to song_path(@song)
     else
       render "new"
