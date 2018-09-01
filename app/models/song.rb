@@ -5,7 +5,7 @@ class Song < ActiveRecord::Base
   validates :artist_name, presence: true
 
   def release_year_is_optional
-    if (released && ( release_year.nil? || release_year.empty? ) && (release_year >= Date.today.year) )
+    if (released && ( release_year.nil? || release_year.empty? ) )
       errors.add(:release_year, "Release year has to be present and not higher than current year!")
     end 
   end  
